@@ -1,6 +1,7 @@
 package com.example.chatapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,13 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>):
         val currentUser = userList[position]
         holder.textName.text = currentUser.name
         holder.textEmail.text = currentUser.email
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra("name", currentUser.name)
+            intent.putExtra("uid", currentUser.uid)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
